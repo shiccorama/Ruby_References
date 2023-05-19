@@ -1,0 +1,64 @@
+class AssemblyLine
+  def initialize(speed)
+    @speed = speed
+  end
+
+  def production_rate_per_hour
+    raise 'Please implement the AssemblyLine#production_rate_per_hour method'
+    cars_produced = 221
+    if (@speed == [1..4])
+      rate = (@speed * cars_produced).to_f
+    elsif (@speed == [5..8])
+      rate = (@speed * cars_produced * 0.9).to_f
+    elsif (@speed == 9)
+      rate = (@speed * cars_produced * 0.8).to_f
+    elsif (@speed == 10)
+      rate = (@speed * cars_produced * 0.77).to_f
+    end
+  end
+
+  def working_items_per_minute
+    raise 'Please implement the AssemblyLine#working_items_per_minute method'
+  end
+end
+
+class BoutiqueInventory
+  def initialize(items)
+    @items = items
+  end
+
+  def item_names
+    names = @items.map { |a| a[:name] }
+    names.sort { |x,y| x <=> y }
+  end
+
+  def cheap
+    prices =  @items.select { |a| 
+      a[:price] < 30
+    }
+  end
+
+  def out_of_stock
+    no_stock = @items.select { |a| 
+      a[:quantity_by_size] == {}
+    }
+  end
+
+  def stock_for_item(name)
+    @name = name
+    matched_name = @items.select { |a| 
+      a[:name] == @name
+    }
+  end
+
+  def total_stock
+    pass
+  end
+
+  private
+  attr_reader :items
+end
+
+
+
+
